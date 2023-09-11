@@ -5,6 +5,7 @@
         "namespace": "android_app",
         "package_name": "com.google.androidbrowserhelper.demos.twapostmessage",
         "sha256_cert_fingerprints": [
+          "74:6F:97:06:A3:A8:E4:54:2A:C3:03:D4:82:04:85:5D:75:E2:BC:C5:A6:AC:16:FF:2D:8E:0B:58:BA:B8:B5:55",
           "B7:F3:9F:10:86:F0:B1:EC:02:E4:FD:3E:8A:ED:B3:82:47:C0:4F:8A:D7:A8:C4:D8:89:B8:11:1F:BD:81:5B:89"
         ]
       }
