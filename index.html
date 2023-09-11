@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+    <h1>TWA Playground</h1>
+    <div id="log"></div>
+<script>
+    window.addEventListener('message', function (event) {
+      const messageDiv = document.createElement('div');
+      messageDiv.innerText = `Message data: ${JSON.stringify(
+        event.data,
+        null,
+        2
+      )}`;
+      document.getElementById('log')?.appendChild(messageDiv);
+      console.log('Event', event);
+      // We are receiveing messages from any origin, you can check of the origin by
+      // using event.origin
+
+      // get the port then use it for communication.
+      var port = event.ports[0];
+      if (typeof port === 'undefined') return;
+
+      // Post message on this port.
+      port.postMessage('Test');
+
+      // Receive upcoming messages on this port.
+      port.onmessage = function (event) {
+        console.log('[PostMessage1] Got message' + event.data);
+        const messageDiv = document.createElement('div');
+        messageDiv.innerText = `Port message: ${event.data}, ${JSON.stringify(
+          event.data,
+          null,
+          2
+        )}`;
+        document.getElementById('log')?.appendChild(messageDiv);
+      };
+    });
+    </script>
+</body>
+</html>
