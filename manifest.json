@@ -6,7 +6,12 @@
     "start_url": "/",
     "name": "hello-world",
     "short_name": "hello-world",
-    "icons": {
-        "name": "world-pngrepo-com.png"
-    }
+    "icons": [
+        {
+          "src": "world-pngrepo-com.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
 }
