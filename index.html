@@ -8,7 +8,9 @@
 <body>
     <h1>TWA Playground</h1>
     <div id="log"></div>
+    <button id="send">send message</button>
 <script>
+  let port;
     window.addEventListener('message', function (event) {
       const messageDiv = document.createElement('div');
       messageDiv.innerText = `Message data: ${JSON.stringify(
@@ -22,7 +24,7 @@
       // using event.origin
 
       // get the port then use it for communication.
-      var port = event.ports[0];
+      port = event.ports[0];
       if (typeof port === 'undefined') return;
 
       // Post message on this port.
@@ -40,6 +42,10 @@
         document.getElementById('log')?.appendChild(messageDiv);
       };
     });
+
+    document.getElementById('send').addEventListener('click', () => {
+      port.postMessage('Hello World');
+    })
     </script>
 </body>
 </html>
