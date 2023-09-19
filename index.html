@@ -10,20 +10,18 @@
 </head>
 <body>
     <h1>TWA Playground</h1>
-    <div id="log"></div>
-    <button id="send">send message</button>
+    <button id="send">send test message</button>
     <br>
     <a href="https://google.com/">google.com</a>
+    <br>
+    <button id="on">Scanner anschalten</button>
+    <br>
+    <button id="off">Scanner ausschalten</button>
+    <br>
+    <div id="log"></div>
 <script>
   let port;
     window.addEventListener('message', function (event) {
-      const messageDiv = document.createElement('div');
-      messageDiv.innerText = `Message data: ${JSON.stringify(
-        event.data,
-        null,
-        2
-      )}`;
-      document.getElementById('log')?.appendChild(messageDiv);
       console.log('Event', event);
       // We are receiveing messages from any origin, you can check of the origin by
       // using event.origin
@@ -50,6 +48,14 @@
 
     document.getElementById('send').addEventListener('click', () => {
       port.postMessage('Hello World');
+    })
+
+    document.getElementById('on').addEventListener('click', () => {
+      port.postMessage('scanner-on');
+    })
+
+    document.getElementById('off').addEventListener('click', () => {
+      port.postMessage('scanner-off');
     })
     </script>
 </body>
