@@ -9,14 +9,20 @@
   <title></title>
 </head>
 <body>
-    <h1>TWA Playground</h1>
-    <button id="send">send test message</button>
+    <h1 style="text-align: center">TWA Playground</h1>
+    <div style="display: flex; justify-content: center">
+        <button id="send">Send Hello World</button>
+    </div>
+    <br><br>
+    <div style="display: flex; justify-content: space-between">
+        <button id="on">Scanner anschalten</button>
+        <button id="off">Scanner ausschalten</button>
+    </div>
+    <br><br>
+    <div style="display: flex; justify-content: center">
+        <button id="trigger-scan">Trigger Scan</button>
+    </div>
     <br>
-    <a href="https://google.com/">google.com</a>
-    <br>
-    <button id="on">Scanner anschalten</button>
-    <br>
-    <button id="off">Scanner ausschalten</button>
     <br>
     <div id="log"></div>
 <script>
@@ -30,14 +36,11 @@
       port = event.ports[0];
       if (typeof port === 'undefined') return;
 
-      // Post message on this port.
-      port.postMessage('Test');
-
       // Receive upcoming messages on this port.
       port.onmessage = function (event) {
-        console.log('[PostMessage1] Got message' + event.data);
+        console.log('[PostMessage] Got event', event);
         const messageDiv = document.createElement('div');
-        messageDiv.innerText = `Port message: ${event.data}, ${JSON.stringify(
+        messageDiv.innerText = `Port message: ${JSON.stringify(
           event.data,
           null,
           2
@@ -56,6 +59,10 @@
 
     document.getElementById('off').addEventListener('click', () => {
       port.postMessage('scanner-off');
+    })
+
+    document.getElementById('trigger-scan').addEventListener('click', () => {
+      port.postMessage('trigger-scan');
     })
     </script>
 </body>
